@@ -3,6 +3,8 @@ import { x as f, y, Test } from "./module";
 import Test2 from "./module";
 import { default as app } from "./module";
 import Child from "./Child";
+import Stateless from "./stateless";
+import Items from "./components/item";
 
 class App extends Component {
   Testo() {
@@ -33,7 +35,25 @@ class App extends Component {
     console.log("MouseMove");
   }
 
-  change = () => {};
+  // change = () => {
+  //   console.log(this.state);
+  // };
+
+  change = () => {
+    this.setState({
+      name: "Andro",
+      job: "programmer",
+      age: "30",
+    });
+  };
+
+  state = {
+    items: [
+      { id: 1, name: "ali", age: 24 },
+      { id: 2, name: "naser", age: 25 },
+      { id: 3, name: "omar", age: 23 },
+    ],
+  };
 
   render() {
     return (
@@ -49,6 +69,14 @@ class App extends Component {
         <button onClick={this.HandleClick}>Click</button>
         <button onMouseMove={this.HandleMouseMove}>MouseMove</button>
         <button onClick={this.change}>Change State</button>
+        <p>{this.state.name}</p>
+        <p>{this.state.job}</p>
+        <p>{this.state.age}</p>
+        <Stateless test={this.state.name} />
+        List Items
+        {/* <Items id="1" name="ahmed" age="22" />
+        <Items id="2" name="tarek" age="25" /> */}
+        <Items items={this.state.items} />
       </div>
     );
   }
