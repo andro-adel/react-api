@@ -55,6 +55,25 @@ class App extends Component {
     ],
   };
 
+  // state = {
+  //   product: "",
+  // };
+
+  // handochange = (e) => {
+  //   console.log(e.target.value);
+  // };
+
+  handochange = (e) => {
+    this.setState({
+      product: e.target.value,
+    });
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(this.state.product);
+  };
+
   render() {
     return (
       <div className="App">
@@ -76,6 +95,19 @@ class App extends Component {
         List Items
         {/* <Items id="1" name="ahmed" age="22" />
         <Items id="2" name="tarek" age="25" /> */}
+        <Items items={this.state.items} />
+        <form onSubmit={this.handleSubmit}>
+          <input type="text" onChange={this.handochange} />
+          <button>Submit</button>
+          <textarea type="text" onChange={this.handochange} />
+          <input type="submit" value="send" />
+          <select onChange={this.handochange}>
+            <option value="value 1">value 1</option>
+            <option value="value 2">value 2</option>
+            <option value="value 3">value 3</option>
+          </select>
+        </form>
+        {this.state.product}
         <Items items={this.state.items} />
       </div>
     );
