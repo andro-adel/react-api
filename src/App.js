@@ -1,12 +1,30 @@
 import React, { Component } from "react";
+import { BrowserRouter, Route } from "react-router-dom";
 import { x as f, y, Test } from "./module";
 import Test2 from "./module";
 import { default as app } from "./module";
 import Child from "./Child";
 import Stateless from "./stateless";
 import Items from "./components/item";
+import Nav from "./components/nav";
+import home from "./components/home";
+import about from "./components/about";
+import Blog from "./components/blog";
 
 class App extends Component {
+  constructor() {
+    super();
+    console.log("constructor");
+  }
+
+  componentDidMount() {
+    console.log("componentDidMount");
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log("componentDidUpdate", prevProps, prevState);
+  }
+
   Testo() {
     console.log("Test !");
   }
@@ -74,42 +92,70 @@ class App extends Component {
     console.log(this.state.product);
   };
 
+  handleadd = (e) => {
+    let rand = Math.random();
+    let items = this.state.items;
+    items.push({ id: rand, name: "ahmed", age: 30 });
+    this.setState({
+      items: items,
+    });
+  };
+
+  handledelete = (e) => {
+    this.setState({
+      items: [{ id: 2, name: "naser", age: 25 }],
+    });
+  };
+
   render() {
+    console.log("render");
     return (
-      <div className="App">
-        Hello React {f + y}
-        {Test()}
-        {Test2()}
-        {app()}
-        <Child />
-        {this.Testo()}
-        <button onClick={this.HandleClickState.bind(this)}>Click This</button>
-        <button onClick={this.HandleClickState2}>Click This 2</button>
-        <button onClick={this.HandleClick}>Click</button>
-        <button onMouseMove={this.HandleMouseMove}>MouseMove</button>
-        <button onClick={this.change}>Change State</button>
-        <p>{this.state.name}</p>
-        <p>{this.state.job}</p>
-        <p>{this.state.age}</p>
-        <Stateless test={this.state.name} />
-        List Items
-        {/* <Items id="1" name="ahmed" age="22" />
+      <BrowserRouter>
+        <div className="App">
+          <Nav />
+          <Route exact path="/" component={home} />
+          <Route path="/about" component={about} />
+          <Route path="/blog" component={Blog} />
+          {/* Hello React {f + y}
+          {Test()}
+          {Test2()}
+          {app()}
+          <Child />
+          {this.Testo()}
+          <button onClick={this.HandleClickState.bind(this)}>Click This</button>
+          <button onClick={this.HandleClickState2}>Click This 2</button>
+          <button onClick={this.HandleClick}>Click</button>
+          <button onMouseMove={this.HandleMouseMove}>MouseMove</button>
+          <button onClick={this.change}>Change State</button>
+          <p>{this.state.name}</p>
+          <p>{this.state.job}</p>
+          <p>{this.state.age}</p>
+          <Stateless test={this.state.name} />
+          List Items */}
+          {/* <Items id="1" name="ahmed" age="22" />
         <Items id="2" name="tarek" age="25" /> */}
-        <Items items={this.state.items} />
-        <form onSubmit={this.handleSubmit}>
-          <input type="text" onChange={this.handochange} />
-          <button>Submit</button>
-          <textarea type="text" onChange={this.handochange} />
-          <input type="submit" value="send" />
-          <select onChange={this.handochange}>
-            <option value="value 1">value 1</option>
-            <option value="value 2">value 2</option>
-            <option value="value 3">value 3</option>
-          </select>
-        </form>
-        {this.state.product}
-        <Items items={this.state.items} />
-      </div>
+          {/* <Items items={this.state.items} />
+          <form onSubmit={this.handleSubmit}>
+            <input type="text" onChange={this.handochange} />
+            <button>Submit</button>
+            <textarea type="text" onChange={this.handochange} />
+            <input type="submit" value="send" />
+            <select onChange={this.handochange}>
+              <option value="value 1">value 1</option>
+              <option value="value 2">value 2</option>
+              <option value="value 3">value 3</option>
+            </select>
+          </form>
+          {this.state.product}
+          <Items items={this.state.items} />
+          <hr></hr>
+          <br></br>
+          <button onClick={this.handleadd}>Add</button>
+          <button onClick={this.handledelete}>Delete</button>
+          <br></br>
+          <br></br> */}
+        </div>
+      </BrowserRouter>
     );
   }
 }
