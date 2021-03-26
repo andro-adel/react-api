@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { x as f, y, Test } from "./module";
 import Test2 from "./module";
 import { default as app } from "./module";
@@ -10,6 +10,9 @@ import Nav from "./components/nav";
 import home from "./components/home";
 import about from "./components/about";
 import Blog from "./components/blog";
+import Rout from "./components/Rout";
+import Col from "./components/col";
+import img from "./Coffe-01.jpg";
 
 class App extends Component {
   constructor() {
@@ -113,9 +116,12 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <Nav />
-          <Route exact path="/" component={home} />
-          <Route path="/about" component={about} />
-          <Route path="/blog" component={Blog} />
+          <Switch>
+            <Route exact path="/" component={home} />
+            <Route path="/about" component={about} />
+            <Route path="/blog" component={Blog} />
+            <Route path="/:test_params" component={Rout} />
+          </Switch>
           {/* Hello React {f + y}
           {Test()}
           {Test2()}
@@ -155,6 +161,14 @@ class App extends Component {
           <br></br>
           <br></br> */}
         </div>
+        <table>
+          <tbody>
+            <tr>
+              <Col />
+            </tr>
+          </tbody>
+        </table>
+        <img src={img} className="img" />
       </BrowserRouter>
     );
   }
