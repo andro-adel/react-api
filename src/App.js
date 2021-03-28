@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Button } from "react-bootstrap";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { x as f, y, Test } from "./module";
 import Test2 from "./module";
@@ -9,6 +10,8 @@ import Items from "./components/item";
 import Nav from "./components/nav";
 import home from "./components/home";
 import about from "./components/about";
+import login from "./components/login";
+import register from "./components/register";
 import Blog from "./components/blog";
 import Rout from "./components/Rout";
 import Col from "./components/col";
@@ -119,6 +122,8 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={home} />
             <Route path="/about" component={about} />
+            <Route path="/login" component={login} />
+            <Route path="/register" component={register} />
             <Route path="/blog" component={Blog} />
             <Route path="/:test_params" component={Rout} />
           </Switch>
@@ -161,14 +166,15 @@ class App extends Component {
           <br></br>
           <br></br> */}
         </div>
-        <table>
+        {/* <table>
           <tbody>
             <tr>
               <Col />
             </tr>
           </tbody>
         </table>
-        <img src={img} className="img" />
+        <Button>Click Here</Button>
+        <img src={img} className="img" /> */}
       </BrowserRouter>
     );
   }
